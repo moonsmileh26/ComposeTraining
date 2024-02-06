@@ -20,20 +20,19 @@ class MainViewModel @Inject constructor(private val disneyRepository: DisneyRepo
     init {
         viewModelScope.launch {
             state = state.copy(isLoading = true)
-
-            val charactersSaved = disneyRepository.getCharactersFromDB()
-            if (charactersSaved.isEmpty()) {
+            val localCharacters = disneyRepository.getCharactersFromDB()
+            if (localCharacters.isEmpty()) {
                 requestGetCharactersAPI()
             } else {
-                state = state.copy(isLoading = false, characters = charactersSaved)
+                state = state.copy(isLoading = false, characters = localCharacters)
             }
-
         }
     }
 
     private suspend fun requestGetCharactersAPI() {
         disneyRepository.getCharactersFromAPI().onSuccess {
             disneyRepository.insertCharacterIntoDB(it)
+            state = state.copy(false, it)
         }.onFailure {
             state = state.copy(isLoading = false)
         }
