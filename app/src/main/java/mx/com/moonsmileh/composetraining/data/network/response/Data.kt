@@ -1,4 +1,4 @@
-package mx.com.moonsmileh.composetraining.data.response
+package mx.com.moonsmileh.composetraining.data.network.response
 
 data class Data(
     val imageUrl: String,

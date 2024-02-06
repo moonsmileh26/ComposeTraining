@@ -56,6 +56,14 @@ dependencies {
     val daggerHiltVersion = "2.48.1"
     val retrofitVersion = "2.9.0"
     val loggingInterceptor = "4.3.1"
+    val roomVersion = "2.6.1"
+
+    implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
